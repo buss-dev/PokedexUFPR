@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/registerPokemon"
+        android:title="Cadastrar pokémon" />
+    <item
+        android:id="@+id/listAllPokemons"
+        android:title="Listar todos pokemons" />
+    <item
+        android:id="@+id/searchByType"
+        android:title="Pesquisar pokémon por tipo" />
+    <item
+        android:id="@+id/searchByAbility"
+        android:title="Pesquisar pokémon por habilidade" />
+    <item
+        android:id="@+id/exitMenu"
+        android:title="Sair" />
+</menu>
