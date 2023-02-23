@@ -1,9 +1,12 @@
 package br.buss.pokedexufpr;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,11 +56,32 @@ public class MainActivity extends AppCompatActivity {
                     User user = response.body();
 
                     if (user != null && user.getMessage() != null) {
-                        Toast.makeText(MainActivity.this, user.getMessage(), Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                        alertDialogBuilder.setTitle("Erro");
+                        alertDialogBuilder.setPositiveButton("Voltar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        alertDialogBuilder.setMessage(user.getMessage());
+                        AlertDialog alert = alertDialogBuilder.create();
+                        alert.show();
                     }
 
                     if (user != null && user.getMessage().equals("Usuário logado com sucesso!")) {
                         StateManager.setTokenJwt(user.getToken());
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                        alertDialogBuilder.setTitle("Usuário logado");
+                        alertDialogBuilder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        alertDialogBuilder.setMessage(user.getMessage());
+                        AlertDialog alert = alertDialogBuilder.create();
+                        alert.show();
                         Intent it = new Intent(MainActivity.this, DashboardActivity.class);
                         startActivity(it);
                     }

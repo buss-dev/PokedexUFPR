@@ -306,6 +306,17 @@ public class RegisterPokemonActivity extends AppCompatActivity {
                             Toast.makeText(RegisterPokemonActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         if (!message.getMessage().equals("Pokémon com esse nome já existe")) {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(RegisterPokemonActivity.this);
+                            alertDialogBuilder.setTitle("Pokémon criado");
+                            alertDialogBuilder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            alertDialogBuilder.setMessage(message.getMessage());
+                            AlertDialog alert = alertDialogBuilder.create();
+                            alert.show();
                             finish();
                         }
                     }
